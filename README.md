@@ -3,13 +3,11 @@ A laravel nova filter that implement jquery select2
 
 Works with both solo and multi select
 
-![solo](screenshots/solo.png)
-
 ![multi](screenshots/multi.png)
 
 ## Instalation
 
-WIP
+`composer require angauber/nova-select2-filter`
 
 ## Usage
 Create a new filter with 
