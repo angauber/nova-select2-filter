@@ -33,7 +33,8 @@
       return {
         config: {
           data: null,
-        }
+        },
+        value: '',
       }
     },
     methods: {
