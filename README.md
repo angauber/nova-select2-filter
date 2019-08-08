@@ -3,9 +3,9 @@ A laravel nova filter that implement jquery select2
 
 Works with both solo and multi select
 
-![Exemple solo](https://raw.githubusercontent.com/angauber/nova-select2-filter/screenshots/solo.png)
+![solo](screenshots/solo.png)
 
-![Exemple multi](https://raw.githubusercontent.com/angauber/nova-select2-filter/screenshots/multi.png)
+![multi](screenshots/multi.png)
 
 ## Instalation
 
