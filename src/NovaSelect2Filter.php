@@ -15,17 +15,24 @@ abstract class NovaSelect2Filter extends Filter
 
     public function __construct()
     {
-        $this->withMeta($this->config());
+        $this->withMeta(['config' => array_merge($this->config(), $this->defaultConfig())]);
     }
 
-    public function config() : array
+    public function config(): array
     {
         return [
-            'config' => [
-                'multiple' => true,
-                'allowClear' => true,
-                'placeholder' => 'Choose an option',
-            ],
+            'multiple' => true,
+            'allowClear' => true,
+            'placeholder' => 'Choose option(s)',
+        ];
+    }
+
+    private function defaultConfig(): array
+    {
+        return [
+            'theme' => 'default nova-select2-filter-wrapper',
+            'containerCssClass' => 'nova-select2-filter-selection',
+            'dropdownCssClass' => 'nova-select2-filter-dropdown',
         ];
     }
 }

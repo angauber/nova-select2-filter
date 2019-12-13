@@ -50,14 +50,14 @@ Then replace it's content like so
 
 The `$value` parameter of the `apply()` method will either be an array or an integer depending if `multiple` is set to `true` or `false` in the `config` method
 
-The `option()` method must return an array of `key` => `value` like so `id` => `text`
+The `option()` method must return an array of `key` => `value`
 
 The `config()` method must return an array containing select2 config parameters.
 See [Select2 documentaion](https://select2.org/configuration/options-api "Select2 documentaion")
 
-## Exemple
+## Example
 
-Let's say you want to implement a multiple selection to filter a User Model, you could do like so
+Let's say you want to implement a multiple selection to filter a User Model on a Many relationship, you could do like so
 
         <?php
         
@@ -66,17 +66,20 @@ Let's say you want to implement a multiple selection to filter a User Model, you
         	use Illuminate\Database\Eloquent\Builder;
         	use Illuminate\Http\Request;
         	use Angauber\NovaSelect2Filter\NovaSelect2Filter;
+        	use \App\Models\UserType;
         
         	class ContactType extends NovaSelect2Filter
         	{
         		public $component = 'nova-select2-filter';
         
         		public function apply(Request $request, $query, $value) {
-        			return $query->whereIn('users.id', $value);
+        		    return $query->whereHas('type', function(Builder $query) use ($value) {
+        		        $query->whereIn('id', $value)
+        		    });
         		}
         
         		public function options(Request $request) {
-        			return \App\User::pluck('username', 'id');
+        			return UserType::pluck('username', 'id');
         		}
         
         		public function config() {
@@ -84,7 +87,7 @@ Let's say you want to implement a multiple selection to filter a User Model, you
         				'config' => [
         					'multiple' => true,
         					'allowClear' => true,
-        					'placeholder' => 'Choose an option',
+        					'placeholder' => 'Choose option(s)',
         				];
         			];
         		}
