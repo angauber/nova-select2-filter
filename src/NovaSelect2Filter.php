@@ -30,7 +30,7 @@ abstract class NovaSelect2Filter extends Filter
     private function defaultConfig(): array
     {
         return [
-            'theme' => 'default nova-select2-filter-wrapper',
+            'theme' => 'angauber-flat nova-select2-filter-wrapper',
             'containerCssClass' => 'nova-select2-filter-selection',
             'dropdownCssClass' => 'nova-select2-filter-dropdown',
         ];

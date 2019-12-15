@@ -39,8 +39,6 @@
     },
     methods: {
       handleChange(value) {
-        value = parseInt(value)
-
         if (this.config.multiple) {
           const foo = this.value.indexOf(value)
 
@@ -78,6 +76,9 @@
           data.push({'id': element.name, 'text': element.value})
         })
 
+        if (typeof config.placeholder == "undefined") {
+          config.placeholder = "Choose option(s)";
+        }
         config.data = data
         this.config = config
 

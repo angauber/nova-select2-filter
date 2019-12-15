@@ -18,7 +18,7 @@ class FilterServiceProvider extends ServiceProvider
         Nova::serving(function (ServingNova $event) {
             Nova::script('nova-select2-filter', __DIR__.'/../dist/js/filter.js');
             Nova::style('nova-select2-filter', __DIR__.'/../dist/css/filter.css');
-        });
+	});
     }
 
     /**

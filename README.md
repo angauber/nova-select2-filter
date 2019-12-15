@@ -1,6 +1,4 @@
 # nova-select2-filter
-A laravel nova filter that implement jquery select2
-
 Works with both solo and multi select
 
 ![multi](screenshots/multi.png)
@@ -21,34 +19,34 @@ Then replace it's content like so
 
     <?php
         
-        	namespace App\Nova\Filters;
+        namespace App\Nova\Filters;
         
-        	use Illuminate\Database\Eloquent\Builder;
-        	use Illuminate\Http\Request;
-        	use Angauber\NovaSelect2Filter\NovaSelect2Filter;
+        use Illuminate\Database\Eloquent\Builder;
+        use Illuminate\Http\Request;
+        use Angauber\NovaSelect2Filter\NovaSelect2Filter;
         
-        	class ContactType extends NovaSelect2Filter
-        	{
-        		public $component = 'nova-select2-filter';
+        class ContactType extends NovaSelect2Filter
+        {
+        	public $component = 'nova-select2-filter';
         
-        		public function apply(Request $request, $query, $value) {
-        			return $query;
-        		}
-        
-        		public function options(Request $request) {
-        			return [];
-        		}
-        
-        		public function config() {
-        			return [
-        				'config' => [
-							\\ Your select2 config goes here
-        				];
-        			];
-        		}
+        	public function apply(Request $request, $query, $value) {
+        		return $query;
         	}
+        
+        	public function options(Request $request) {
+        		return [];
+        	}
+        
+        	public function config() {
+        		return [
+        				'multiple' => true,
+        				'allowClear' => true,
+        				'placeholder' => 'Choose option(s)',
+        		];
+        	}
+        }
 
-The `$value` parameter of the `apply()` method will either be an array or an integer depending if `multiple` is set to `true` or `false` in the `config` method
+The `$value` parameter of the `apply()` method will either be an array of string or a string depending if `multiple` is set to `true` or `false` in the `config` method
 
 The `option()` method must return an array of `key` => `value`
 
@@ -61,7 +59,7 @@ Let's say you want to implement a multiple selection to filter a User Model on a
 
         <?php
         
-        	namespace App\Nova\Filters;
+            namespace App\Nova\Filters;
         
         	use Illuminate\Database\Eloquent\Builder;
         	use Illuminate\Http\Request;
@@ -70,29 +68,24 @@ Let's say you want to implement a multiple selection to filter a User Model on a
         
         	class ContactType extends NovaSelect2Filter
         	{
-        		public $component = 'nova-select2-filter';
+        		public $component = 'nova-select2-filter'
         
         		public function apply(Request $request, $query, $value) {
         		    return $query->whereHas('type', function(Builder $query) use ($value) {
-        		        $query->whereIn('id', $value)
+        		        $query->whereIn('types.id', $value)
         		    });
         		}
         
         		public function options(Request $request) {
-        			return UserType::pluck('username', 'id');
+        			return UserType::p"luck('username', 'id');
         		}
         
-        		public function config() {
-        			return [
-        				'config' => [
-        					'multiple' => true,
-        					'allowClear' => true,
-        					'placeholder' => 'Choose option(s)',
-        				];
+        		public function config(): array {
+        		    return [
+        				'multiple' => true,
+        				'allowClear' => true,
+        				'placeholder' => 'Choose option(s)',
         			];
         		}
         	}
-        
-
-
-
+    
