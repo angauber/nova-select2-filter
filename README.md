@@ -77,7 +77,7 @@ Let's say you want to implement a multiple selection to filter a User Model on a
         		}
         
         		public function options(Request $request) {
-        			return UserType::p"luck('username', 'id');
+        			return UserType::pluck('name', 'id');
         		}
         
         		public function config(): array {
