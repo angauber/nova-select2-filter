@@ -1,3 +1,6 @@
+# Warning
+This repository is not maintained anymore
+
 # nova-select2-filter
 Works with both solo and multi select
 
